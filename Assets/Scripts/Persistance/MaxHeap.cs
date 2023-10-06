@@ -4,8 +4,8 @@ using System;
 [System.Serializable]
 public class MaxHeap
 {
-    private List<int> heap;
-    private int capacity;
+    public List<int> heap;
+    public int capacity;
 
     public MaxHeap(int capacity)
     {
@@ -59,8 +59,9 @@ public class MaxHeap
 
     public int GetHighScore()
     {
-        if (heap.Count == 0) return 0;
-        return heap[0];
+        if (heap.Count > 0) return heap[0];
+        return 0;
+        
     }
 
     private void PopMin()
