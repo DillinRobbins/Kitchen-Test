@@ -20,17 +20,23 @@ public class Table : MonoBehaviour, IInteractable
     [SerializeField] private GameObject progressBar;
     [SerializeField] private Slider progressBarSlider;
 
+    private Ingredient heldIngredient;
+
     public void Interact(Ingredient ingredient)
     {
         if (foodPrepared)
         {
             playerInventory.GiveSalad();
+            heldIngredient = null;
             ingredientSpriteRenderer.sprite = null;
             foodPrepared = false;
         }
-        if (ingredient is Vegetable)
+        else if (heldIngredient != null) StartCoroutine(PrepareFood());
+
+        else if (ingredient is Vegetable)
         {
             playerInventory.RemoveIngredient();
+            heldIngredient = ingredient;
             ingredientSpriteRenderer.sprite = ingredient.GetSprite();
             StartCoroutine(PrepareFood());
         }
