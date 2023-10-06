@@ -51,7 +51,7 @@ public class StatsManager : MonoBehaviour
     public void IncrementScore(int score)
     {
         this.score += score;
-        scoreText.text = score.ToString();
+        scoreText.text = this.score.ToString();
     }
 
     private void UpdateHighScores(int score)
